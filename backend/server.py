@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from . import scrape, parse, db, mock_data
+from . import scrape, db, mock_data
 
 # ... (omitted code)
 
