@@ -11,7 +11,8 @@ export default function Home() {
 
   const fetchViolations = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/violations');
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+      const res = await fetch(`${API_BASE}/api/violations`);
       const data = await res.json();
       setViolations(data);
     } catch (e) {
@@ -22,7 +23,8 @@ export default function Home() {
   const triggerScrape = async () => {
     setLoading(true);
     try {
-      await fetch('http://127.0.0.1:8000/api/trigger-scrape', { method: 'POST' });
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+      await fetch(`${API_BASE}/api/trigger-scrape`, { method: 'POST' });
       await fetchViolations();
     } catch (e) {
       alert("Scrape failed: " + e);
